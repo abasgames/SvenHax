@@ -1,7 +1,7 @@
 #ifndef UTIL_MATH_HPP
 #define UTIL_MATH_HPP
-
-#include "../Engine/Primitives/Vector.hpp"
+#include <iostream>
+#include <vector>
 #include "../Engine/Primitives/Color.hpp"
 #include "../Engine/Primitives/QAngle.hpp"
 #include "../Engine/Primitives/UserCmd.hpp"
