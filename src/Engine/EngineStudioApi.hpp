@@ -7,10 +7,10 @@
 #include "Primitives/CacheUser.hpp"
 #include "Primitives/EntityState.hpp"
 #include "Primitives/PlayerInfo.hpp"
+#include "Primitives/ALight.hpp"
 
 struct EngineStudioApi
 {
-	/*
 	// Allocate number*size bytes and zero it
 	void* (*Mem_Calloc)(i32 number, size_t size);
 	// Check to see if pointer is in the cache
@@ -26,13 +26,13 @@ struct EngineStudioApi
 	// Get entity that is set for rendering
 	Entity* (*GetCurrentEntity)(void);
 	// Get referenced player_info_t
-	PlayerInfo* (*PlayerInfo)(i32 index);
+	PlayerInfo* (*GetPlayerInfo)(i32 index);
 	// Get most recently received player state data from network system
 	EntityState* (*GetPlayerState)(i32 index);
 	// Get viewentity
 	Entity* (*GetViewEntity)(void);
 	// Get current frame count, and last two timestampes on client
-	void (*GetTimes)(int* framecount, double* current, double* old);
+	void (*GetTimes)(i32* framecount, double* current, double* old);
 	// Get a pointer to a cvar by name
 	CVar* (*GetCvar)(const char* name);
 	// Get current render origin and view vectors ( up, right and vpn )
@@ -40,7 +40,7 @@ struct EngineStudioApi
 	// Get sprite model used for applying chrome effect
 	Model* (*GetChromeSprite)(void);
 	// Get model counters so we can incement instrumentation
-	void (*GetModelCounters)(int** s, int** a);
+	void (*GetModelCounters)(i32** s, i32** a);
 	// Get software scaling coefficients
 	void (*GetAliasScale)(f32* x, f32* y);
 
@@ -53,7 +53,7 @@ struct EngineStudioApi
 	// Set up body part, and get submodel pointers
 	void (*StudioSetupModel)(i32 bodypart, void** ppbodypart, void** ppsubmodel);
 	// Check if entity's bbox is in the view frustum
-	int (*StudioCheckBBox)(void);
+	i32 (*StudioCheckBBox)(void);
 	// Apply lighting effects to model
 	void (*StudioDynamicLight)(Entity* ent, ALight* plight);
 	void (*StudioEntityLight)(ALight* plight);
@@ -101,7 +101,8 @@ struct EngineStudioApi
 	void (*StudioSetRenderamt)(i32 iRenderamt); //!!!CZERO added for rendering glass on viewmodels
 	void (*StudioSetCullState)(i32 iCull);
 	void (*StudioRenderShadow)(i32 iSprite, f32* p1, f32* p2, f32* p3, f32* p4);
-	*/
 };
+
+extern EngineStudioApi* gStudioApi;
 
 #endif // ENGINE_ENGINESTUDIOAPI_HPP

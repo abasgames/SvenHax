@@ -7,6 +7,7 @@
 #include "Util/Symbol.hpp"
 #include "Engine/ClientDLL.hpp"
 #include "Engine/Engine.hpp"
+#include "Engine/EngineExportedFuncs.hpp"
 
 extern CBaseFileSystem* fileSystem;
 extern CDedicatedServerAPI* dedicatedServer;
@@ -33,8 +34,11 @@ extern CRunGameEngine* gameEngine;
 extern CVGuiSystemModuleLoader* moduleLoader;
 extern CServerBrowser* serverBrowser;
 extern CDefaultCvar* cvar;
-
 extern CEngine* engine;
+
+extern VMT* studioRendererVMT;
+
+extern char* gSharedString;
 
 namespace Interface
 {
@@ -43,12 +47,8 @@ namespace Interface
 	void DumpInterfaces();
 
 	void FindClientDLLFuncs();
-	void FindEngineFuncs();
 
-	void FindCEngine();
-	void FindPlayerList();
-	void FindPlayerMove();
-	void FindEnts();
+	void FindGlobals();
 
 	void HookVMs();
 }

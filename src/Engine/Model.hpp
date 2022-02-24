@@ -27,12 +27,12 @@ MAKE_CENUM_Q(SyncType, i32,
 
 struct Model
 {
-	static constexpr inline std::size_t MaxNameLen = 64;
-	char name[MaxNameLen];
-	QBool needload; // bmodels and sprites don't cache normally
+	static constexpr inline std::size_t NameLen = 64;
+	std::array<char, NameLen> name;
+	QBool needLoad; // bmodels and sprites don't cache normally
 
 	ModelType type;
-	i32 numframes;
+	i32 numFrames;
 	SyncType synctype;
 
 	i32 flags;
@@ -57,8 +57,8 @@ struct Model
 	i32 numleafs; // number of visible leafs, not counting 0
 	MLeaf* leafs;
 
-	i32 numvertexes;
-	MVertex* vertexes;
+	i32 numvertices;
+	MVertex* vertices;
 
 	i32 numedges;
 	MEdge* edges;

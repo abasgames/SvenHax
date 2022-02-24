@@ -9,6 +9,8 @@
 
 struct Entity // cl_entity_s
 {
+	static constexpr std::size_t EntNum = 2048;
+
 	i32 index; // Index into cl_entities ( should match actual slot, but not necessarily )
 
 	QBool player; // True if this entity is a "player"
@@ -18,8 +20,8 @@ struct Entity // cl_entity_s
 	EntityState curstate; // The state information from the last message received from server
 
 	i32 currentPosition; // Last received history update index
-	static constexpr inline std::size_t PositionHistoryMax = 64;
-	PositionHistory positionHistory[PositionHistoryMax]; // History of position and angle updates for this player
+	static constexpr inline std::size_t PositionHistorySize = 64;
+	std::array<PositionHistory, PositionHistorySize> positionHistory; // History of position and angle updates for this player
 
 	Mouth mouth; // For synchronizing mouth movements.
 

@@ -8,11 +8,12 @@
 
 #include "Engine/ClientDLL.hpp"
 #include "Engine/Engine.hpp"
+#include "Engine/TempEnt.hpp"
 
 #include "Util/Maps.hpp"
-#include "Util/VMT.hpp"
 #include "Interface.hpp"
 #include "Hooks/Hooks.hpp"
+#include "Hacks/Info.hpp"
 
 std::mutex mtx;
 std::condition_variable cv;
@@ -44,12 +45,8 @@ void MainThread()
 		Interface::FindInterfaces();
 
 		Interface::FindClientDLLFuncs();
-		Interface::FindEngineFuncs();
 
-		Interface::FindCEngine();
-		Interface::FindPlayerList();
-		Interface::FindPlayerMove();
-		Interface::FindEnts();
+		Interface::FindGlobals();
 
 		Interface::HookVMs();
 
@@ -57,8 +54,11 @@ void MainThread()
 		SDL2::HookSwapWindow();
 		SDL2::HookPollEvent();
 		CreateMove::HookCreateMove();
+
+		Info::PopulateModelMap();
 		
 		console->DPrintf("SvenHax Successfully Loaded...\n");
+		fmt::print("EntityState = {}", sizeof(EntityState));
 
 	}
 	catch (Exception& e)
@@ -93,3 +93,7 @@ void __attribute__((destructor)) Shutdown()
 
 	Message("Unloaded");
 }
+
+/*
+ * gTempEnts size: 3068 * 2048
+ */
